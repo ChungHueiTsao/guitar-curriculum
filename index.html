@@ -1,0 +1,808 @@
+<title>吉他入門課程地圖</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --paper:#EDEFE7;
+    --paper-raised:#F6F7F1;
+    --ink:#1E2621;
+    --ink-soft:#4B564D;
+    --line:#C9CFC1;
+    --accent:#B9682F;
+    --accent-soft:#E3C8A9;
+    --accent-ink:#5A3212;
+    --stage-bg:#232E27;
+    --stage-ink:#EDEFE7;
+    --chip-bg:#DDE3D3;
+    --tag-good:#3E6B4A;
+    --tag-good-bg:#DCEADF;
+    --tag-bad:#A6432D;
+    --tag-bad-bg:#F3DCD4;
+    --shadow: 0 1px 0 rgba(30,38,33,0.06);
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#161C18;
+      --paper-raised:#1F2620;
+      --ink:#E8EAE2;
+      --ink-soft:#AEB8AA;
+      --line:#333F35;
+      --accent:#E08A45;
+      --accent-soft:#3B2A1B;
+      --accent-ink:#F3D2AC;
+      --stage-bg:#2A3A2F;
+      --stage-ink:#EDEFE7;
+      --chip-bg:#2A342C;
+      --tag-good:#8FC79D;
+      --tag-good-bg:#233329;
+      --tag-bad:#E48A75;
+      --tag-bad-bg:#3A241C;
+      --shadow: 0 1px 0 rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#161C18;
+    --paper-raised:#1F2620;
+    --ink:#E8EAE2;
+    --ink-soft:#AEB8AA;
+    --line:#333F35;
+    --accent:#E08A45;
+    --accent-soft:#3B2A1B;
+    --accent-ink:#F3D2AC;
+    --stage-bg:#2A3A2F;
+    --stage-ink:#EDEFE7;
+    --chip-bg:#2A342C;
+    --tag-good:#8FC79D;
+    --tag-good-bg:#233329;
+    --tag-bad:#E48A75;
+    --tag-bad-bg:#3A241C;
+    --shadow: 0 1px 0 rgba(0,0,0,0.4);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla', ui-sans-serif, system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:56px 28px 96px;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    text-wrap:balance;
+    color:var(--ink);
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  svg text{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+
+  /* ---- Header ---- */
+  header.hero{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:40px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    font-weight:600;
+  }
+  h1{ font-size:clamp(30px,5vw,44px); line-height:1.15; max-width:16ch; }
+  .lede{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    max-width:62ch;
+    margin-top:4px;
+  }
+  .hero-stats{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+    margin-top:18px;
+  }
+  .stat{ display:flex; flex-direction:column; gap:2px; }
+  .stat .n{ font-family:'IBM Plex Mono', monospace; font-size:22px; font-weight:600; color:var(--accent-ink); background:var(--accent-soft); padding:2px 8px; border-radius:4px; width:fit-content; }
+  .stat .l{ font-size:12.5px; color:var(--ink-soft); }
+
+  /* ---- Section headings ---- */
+  section{ margin-bottom:56px; }
+  .section-head{ display:flex; align-items:baseline; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+  .section-head h2{ font-size:23px; }
+  .section-head .sub{ font-size:13.5px; color:var(--ink-soft); }
+
+  p{ margin:0 0 12px; }
+  ul, ol{ margin:0 0 12px; padding-left:22px; }
+  li{ margin-bottom:5px; }
+
+  /* ---- Principles (compact strip) ---- */
+  .principles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+  }
+  .principle{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:14px 16px;
+    box-shadow:var(--shadow);
+  }
+  .principle .k{ font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--accent); text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; }
+  .principle p{ font-size:13.5px; color:var(--ink-soft); margin:0; }
+
+  /* ---- Figures ---- */
+  figure{ margin:0; }
+  .figure{ display:flex; flex-direction:column; align-items:center; gap:12px; }
+  .figure svg{ width:100%; height:auto; display:block; }
+  .figure figcaption{ font-size:13.5px; color:var(--ink-soft); text-align:center; max-width:58ch; }
+  .diagram-solo{ width:100%; margin:0 auto; }
+  .diagram-solo.w-narrow{ max-width:340px; }
+  .diagram-solo.w-mid{ max-width:480px; }
+  .diagram-solo.w-wide{ max-width:640px; }
+  .diagram-pair{ display:grid; grid-template-columns:1fr 1fr; gap:22px; width:100%; align-items:start; }
+  .scroll-x{ overflow-x:auto; }
+  @media (max-width:640px){ .diagram-pair{ grid-template-columns:1fr; } .principles{ grid-template-columns:1fr; } }
+
+  .legend-row{ display:flex; gap:18px; justify-content:center; flex-wrap:wrap; font-size:12.5px; color:var(--ink-soft); margin-bottom:4px; }
+  .legend-row .sw{ display:inline-flex; align-items:center; gap:6px; }
+  .legend-row .sw i{ width:12px; height:12px; border-radius:3px; display:inline-block; }
+
+  /* ---- Timeline overview (roadmap) ---- */
+  .roadmap-wrap{ overflow-x:auto; }
+  .roadmap-wrap svg{ min-width:680px; }
+
+  /* ---- Stage cards ---- */
+  .timeline{ display:flex; flex-direction:column; gap:0; }
+  .stage{
+    display:grid;
+    grid-template-columns:56px 1fr;
+    gap:20px;
+    padding:32px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .stage:last-child{ border-bottom:none; }
+  .stage .marker{ display:flex; flex-direction:column; align-items:center; }
+  .stage .marker .num{
+    width:40px; height:40px; border-radius:50%;
+    background:var(--stage-bg); color:var(--stage-ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:15px;
+    flex-shrink:0;
+  }
+  .stage-head{ display:flex; flex-wrap:wrap; align-items:baseline; gap:10px; margin-bottom:4px; }
+  .stage-head h3{ font-size:19px; }
+  .stage-head .weeks{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-soft); }
+  .stage-goal{ font-size:14px; color:var(--ink-soft); margin-bottom:18px; max-width:62ch; }
+  .tip{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:0 8px 8px 0;
+    padding:10px 14px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin-top:16px;
+  }
+  .tip b{ color:var(--ink); }
+
+  /* ---- Chords ---- */
+  .chords-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+    gap:14px;
+    margin-bottom:22px;
+  }
+  .chord-card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:12px 10px 10px;
+    text-align:center;
+  }
+  .chord-card .name{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:14.5px; margin-bottom:6px; }
+  .chord-card svg{ width:100%; height:auto; }
+
+  .switch-row{ display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .switch-row .chord-card{ width:110px; }
+  .switch-arrow{ display:flex; flex-direction:column; align-items:center; gap:2px; color:var(--ink-soft); }
+  .switch-arrow svg{ width:44px; height:24px; }
+
+  /* ---- Song sheet ---- */
+  .info-box{ display:flex; gap:24px; flex-wrap:wrap; background:var(--paper-raised); border:1px solid var(--line); border-radius:10px; padding:14px 20px; margin-bottom:22px; }
+  .info-box .item{ display:flex; flex-direction:column; gap:2px; }
+  .info-box .item .l{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); }
+  .info-box .item .v{ font-size:15px; font-weight:600; }
+  .prog-block{ margin-bottom:16px; }
+  .prog-block .seg{ font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin-bottom:8px; }
+  .prog-row{ display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px; }
+  .chip{ font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600; background:var(--accent-soft); color:var(--accent-ink); border-radius:6px; padding:3px 10px; }
+  .chip-arrow{ color:var(--ink-soft); font-size:13px; }
+  .disclaimer{ font-size:12.5px; color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:12px; margin-top:18px; }
+
+  /* ---- Song list ---- */
+  .songs{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  .song-tier{ background:var(--paper-raised); border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+  .song-tier h4{ font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); margin:0 0 10px; }
+  .song-tier ul{ font-size:14px; margin:0; padding-left:18px; }
+  @media (max-width:700px){ .songs{ grid-template-columns:1fr; } }
+
+  /* ---- FAQ ---- */
+  .faq{ display:flex; flex-direction:column; gap:14px; }
+  .faq-item{ background:var(--paper-raised); border:1px solid var(--line); border-radius:10px; padding:14px 18px; }
+  .faq-item .q{ font-weight:600; margin-bottom:6px; display:flex; gap:8px; }
+  .faq-item .q .tag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--tag-good); background:var(--tag-good-bg); border-radius:4px; padding:1px 7px; flex-shrink:0; height:fit-content; margin-top:2px; }
+  .faq-item p{ font-size:14px; color:var(--ink-soft); margin:0; }
+
+  footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">吉他教學規劃 · 新手入門</div>
+    <h1>從認識吉他到自彈自唱</h1>
+    <p class="lede">給第一次教吉他新手的完整課程地圖：以圖解為主，帶學生從構造與調音開始，逐步建立左右手基礎、看懂六線譜、彈熟常用和弦與節奏型，最終能獨立自彈自唱一首完整歌曲。</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="n">8</span><span class="l">教學階段</span></div>
+      <div class="stat"><span class="n">12–16 週</span><span class="l">建議總時程</span></div>
+      <div class="stat"><span class="n">20–30 分</span><span class="l">每次練習時間</span></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="section-head"><h2>教學原則</h2><span class="sub">三件事，貫穿所有階段</span></div>
+    <div class="principles">
+      <div class="principle"><div class="k">品質優先於數量</div><p>每天 20–30 分鐘的正確練習，勝過週末一次練 3 小時。</p></div>
+      <div class="principle"><div class="k">先彈出來再求完美</div><p>每階段都要有「聽得到聲音」的小成就感，避免太早卡關。</p></div>
+      <div class="principle"><div class="k">痛是正常，傷是警訊</div><p>前 1–2 週指尖痛屬正常；手腕、虎口劇痛要立刻停下檢查姿勢。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>課程地圖總覽</h2><span class="sub">8 個階段，由淺入深</span></div>
+    <div class="roadmap-wrap">
+      <svg viewBox="0 0 820 310" role="img" aria-label="八階段教學路線圖：構造調音、姿勢手感、節奏拍感、讀譜認識、開放和弦、刷弦節奏、自彈自唱、延伸風格，依序連接成一條學習路徑">
+        <line x1="90" y1="70" x2="690" y2="70" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+        <line x1="690" y1="70" x2="690" y2="230" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+        <line x1="690" y1="230" x2="90" y2="230" stroke="currentColor" stroke-width="2" opacity="0.35"/>
+        <g font-size="20" font-weight="600" text-anchor="middle" dominant-baseline="central" fill="var(--stage-ink)">
+          <circle cx="90" cy="70" r="26" fill="var(--stage-bg)"/><text x="90" y="71">0</text>
+          <circle cx="290" cy="70" r="26" fill="var(--stage-bg)"/><text x="290" y="71">1</text>
+          <circle cx="490" cy="70" r="26" fill="var(--stage-bg)"/><text x="490" y="71">2</text>
+          <circle cx="690" cy="70" r="26" fill="var(--stage-bg)"/><text x="690" y="71">3</text>
+          <circle cx="690" cy="230" r="26" fill="var(--stage-bg)"/><text x="690" y="231">4</text>
+          <circle cx="490" cy="230" r="26" fill="var(--stage-bg)"/><text x="490" y="231">5</text>
+          <circle cx="290" cy="230" r="26" fill="var(--stage-bg)"/><text x="290" y="231">6</text>
+          <circle cx="90" cy="230" r="26" fill="var(--stage-bg)"/><text x="90" y="231">7</text>
+        </g>
+        <g font-size="12.5" text-anchor="middle" fill="var(--ink-soft)" font-family="IBM Plex Mono, monospace">
+          <text x="90" y="30">第1週</text>
+          <text x="290" y="30">第1–2週</text>
+          <text x="490" y="30">第2–3週</text>
+          <text x="690" y="30">第3–4週</text>
+          <text x="690" y="272">第4–7週</text>
+          <text x="490" y="272">第7–9週</text>
+          <text x="290" y="272">第9–12週</text>
+          <text x="90" y="272">第12週+</text>
+        </g>
+        <g font-size="14.5" text-anchor="middle" fill="var(--ink)" font-family="Karla, sans-serif" font-weight="600">
+          <text x="90" y="116">構造調音</text>
+          <text x="290" y="116">姿勢手感</text>
+          <text x="490" y="116">節奏拍感</text>
+          <text x="690" y="116">讀譜認識</text>
+          <text x="690" y="188">開放和弦</text>
+          <text x="490" y="188">刷弦節奏</text>
+          <text x="290" y="188">自彈自唱</text>
+          <text x="90" y="188">延伸風格</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <div class="timeline">
+
+    <!-- Stage 0 -->
+    <div class="stage">
+      <div class="marker"><div class="num">0</div></div>
+      <div>
+        <div class="stage-head"><h3>構造認知與調音</h3><span class="weeks">第 1 週</span></div>
+        <p class="stage-goal">看懂吉他每個部位在哪裡、叫什麼名字，並學會每次練習前調音。</p>
+        <div class="figure diagram-solo w-narrow">
+          <svg viewBox="0 0 460 700" role="img" aria-label="吉他構造圖：標示琴頭、弦鈕、上弦枕、琴頸、琴衍、琴身、音孔、琴橋與六條弦的位置">
+            <rect x="170" y="20" width="100" height="90" rx="16" fill="none" stroke="currentColor" stroke-width="2"/>
+            <g fill="currentColor">
+              <circle cx="158" cy="40" r="7"/><circle cx="158" cy="65" r="7"/><circle cx="158" cy="90" r="7"/>
+              <circle cx="282" cy="40" r="7"/><circle cx="282" cy="65" r="7"/><circle cx="282" cy="90" r="7"/>
+            </g>
+            <line x1="185" y1="110" x2="255" y2="110" stroke="currentColor" stroke-width="5"/>
+            <rect x="185" y="110" width="70" height="250" fill="none" stroke="currentColor" stroke-width="2"/>
+            <g stroke="currentColor" stroke-width="1.3" opacity="0.55">
+              <line x1="185" y1="145" x2="255" y2="145"/><line x1="185" y1="180" x2="255" y2="180"/>
+              <line x1="185" y1="215" x2="255" y2="215"/><line x1="185" y1="250" x2="255" y2="250"/>
+              <line x1="185" y1="285" x2="255" y2="285"/><line x1="185" y1="320" x2="255" y2="320"/>
+              <line x1="185" y1="355" x2="255" y2="355"/>
+            </g>
+            <rect x="60" y="360" width="320" height="290" rx="110" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="220" cy="450" r="48" fill="none" stroke="currentColor" stroke-width="2"/>
+            <rect x="178" y="560" width="84" height="16" rx="4" fill="currentColor"/>
+            <g stroke="currentColor" stroke-width="1.5">
+              <line x1="190" y1="590" x2="190" y2="110"/><line x1="202" y1="590" x2="202" y2="110"/>
+              <line x1="214" y1="590" x2="214" y2="110"/><line x1="226" y1="590" x2="226" y2="110"/>
+              <line x1="238" y1="590" x2="238" y2="110"/><line x1="250" y1="590" x2="250" y2="110"/>
+            </g>
+            <g stroke="currentColor" stroke-width="1.5">
+              <line x1="190" y1="110" x2="158" y2="40"/><line x1="202" y1="110" x2="158" y2="65"/><line x1="214" y1="110" x2="158" y2="90"/>
+              <line x1="226" y1="110" x2="282" y2="90"/><line x1="238" y1="110" x2="282" y2="65"/><line x1="250" y1="110" x2="282" y2="40"/>
+            </g>
+            <g font-size="11" text-anchor="middle" fill="var(--ink-soft)" font-family="IBM Plex Mono, monospace">
+              <text x="190" y="608">6</text><text x="202" y="608">5</text><text x="214" y="608">4</text>
+              <text x="226" y="608">3</text><text x="238" y="608">2</text><text x="250" y="608">1</text>
+              <text x="190" y="623">E</text><text x="202" y="623">A</text><text x="214" y="623">D</text>
+              <text x="226" y="623">G</text><text x="238" y="623">B</text><text x="250" y="623">E</text>
+            </g>
+            <g stroke="currentColor" stroke-width="1" font-size="13" font-family="Karla, sans-serif" fill="var(--ink)">
+              <line x1="272" y1="30" x2="340" y2="30"/><circle cx="272" cy="30" r="2.5" fill="currentColor"/><text x="345" y="34">琴頭</text>
+              <line x1="150" y1="65" x2="48" y2="65"/><circle cx="150" cy="65" r="2.5" fill="currentColor"/><text x="45" y="69" text-anchor="end">弦鈕</text>
+              <line x1="258" y1="110" x2="340" y2="110"/><circle cx="258" cy="110" r="2.5" fill="currentColor"/><text x="345" y="114">上弦枕</text>
+              <line x1="183" y1="215" x2="48" y2="215"/><circle cx="183" cy="215" r="2.5" fill="currentColor"/><text x="45" y="219" text-anchor="end">琴衍</text>
+              <line x1="257" y1="285" x2="340" y2="285"/><circle cx="257" cy="285" r="2.5" fill="currentColor"/><text x="345" y="289">琴頸／指板</text>
+              <line x1="172" y1="450" x2="48" y2="450"/><circle cx="172" cy="450" r="2.5" fill="currentColor"/><text x="45" y="454" text-anchor="end">音孔</text>
+              <line x1="68" y1="600" x2="48" y2="600"/><circle cx="68" cy="600" r="2.5" fill="currentColor"/><text x="45" y="604" text-anchor="end">琴身</text>
+              <line x1="262" y1="568" x2="340" y2="568"/><circle cx="262" cy="568" r="2.5" fill="currentColor"/><text x="345" y="572">琴橋</text>
+            </g>
+          </svg>
+          <figcaption>六條弦由左到右為第 6 弦到第 1 弦，音名由粗到細依序是 <span class="mono">E–A–D–G–B–E</span>。用調音器由粗到細依序調好。</figcaption>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 1 -->
+    <div class="stage">
+      <div class="marker"><div class="num">1</div></div>
+      <div>
+        <div class="stage-head"><h3>姿勢與左右手基礎</h3><span class="weeks">第 1–2 週</span></div>
+        <p class="stage-goal">建立不會受傷的持琴姿勢，並打好左手按弦、右手撥弦的基本動作。</p>
+        <div class="diagram-pair">
+          <div class="figure">
+            <svg viewBox="0 0 300 260" role="img" aria-label="左手手指編號圖：食指到小指依序為1到4，拇指扶在琴頸後方">
+              <rect x="100" y="150" width="100" height="90" rx="28" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="58" y="172" width="52" height="26" rx="13" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="106" y="50" width="18" height="102" rx="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="130" y="32" width="18" height="120" rx="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="154" y="38" width="18" height="114" rx="9" fill="none" stroke="currentColor" stroke-width="2"/>
+              <rect x="178" y="68" width="16" height="84" rx="8" fill="none" stroke="currentColor" stroke-width="2"/>
+              <g font-size="12" text-anchor="middle" fill="var(--paper)">
+                <circle cx="115" cy="42" r="12" fill="var(--accent)"/><text x="115" y="46">1</text>
+                <circle cx="139" cy="24" r="12" fill="var(--accent)"/><text x="139" y="28">2</text>
+                <circle cx="163" cy="30" r="12" fill="var(--accent)"/><text x="163" y="34">3</text>
+                <circle cx="186" cy="60" r="12" fill="var(--accent)"/><text x="186" y="64">4</text>
+                <circle cx="66" cy="176" r="12" fill="var(--accent)"/><text x="66" y="180">T</text>
+              </g>
+            </svg>
+            <figcaption>左手食指到小指編號 1–4，對應和弦圖上的數字；拇指（T）扶在琴頸後方作支撐。</figcaption>
+          </div>
+          <div class="figure">
+            <svg viewBox="0 0 480 200" role="img" aria-label="按弦角度對照：正確時手指垂直靠近琴衍，錯誤時手指平躺且離琴衍太遠">
+              <text x="115" y="24" text-anchor="middle" font-size="14" font-weight="600" fill="var(--tag-good)">✓ 正確</text>
+              <line x1="20" y1="120" x2="210" y2="120" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="20" y1="150" x2="210" y2="150" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+              <line x1="150" y1="90" x2="150" y2="170" stroke="currentColor" stroke-width="3"/>
+              <ellipse cx="133" cy="112" rx="13" ry="28" fill="var(--tag-good-bg)" stroke="var(--tag-good)" stroke-width="2"/>
+              <line x1="240" y1="0" x2="240" y2="200" stroke="var(--line)" stroke-width="1.5"/>
+              <text x="365" y="24" text-anchor="middle" font-size="14" font-weight="600" fill="var(--tag-bad)">✗ 錯誤</text>
+              <line x1="270" y1="120" x2="460" y2="120" stroke="currentColor" stroke-width="1.5"/>
+              <line x1="270" y1="150" x2="460" y2="150" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+              <line x1="400" y1="90" x2="400" y2="170" stroke="currentColor" stroke-width="3"/>
+              <ellipse cx="330" cy="128" rx="32" ry="14" fill="var(--tag-bad-bg)" stroke="var(--tag-bad)" stroke-width="2" transform="rotate(-8 330 128)"/>
+            </svg>
+            <figcaption>正確：手指垂直、緊靠琴衍後方。錯誤：手指平躺、離琴衍太遠，會悶住鄰弦或產生雜音。</figcaption>
+          </div>
+        </div>
+        <div class="tip"><b>爬格子練習：</b>1-2-3-4 指依序按住第 1–4 格並撥響，六條弦都練過一輪，每天 5–10 分鐘。</div>
+      </div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="stage">
+      <div class="marker"><div class="num">2</div></div>
+      <div>
+        <div class="stage-head"><h3>節奏與拍子感</h3><span class="weeks">第 2–3 週</span></div>
+        <p class="stage-goal">先不管和弦與旋律，把「穩定的拍子」練成身體的直覺反應。</p>
+        <div class="legend-row">
+          <span class="sw"><i style="background:currentColor"></i>向下刷 Down</span>
+          <span class="sw"><i style="background:var(--accent)"></i>向上刷 Up</span>
+        </div>
+        <div class="diagram-pair">
+          <div class="figure">
+            <svg viewBox="0 0 480 120" role="img" aria-label="基礎節奏型：四拍皆為向下刷弦">
+              <line x1="20" y1="60" x2="460" y2="60" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <g>
+                <line x1="30" y1="25" x2="30" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="24,52 36,52 30,64" fill="currentColor"/>
+                <line x1="146" y1="25" x2="146" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="140,52 152,52 146,64" fill="currentColor"/>
+                <line x1="262" y1="25" x2="262" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="256,52 268,52 262,64" fill="currentColor"/>
+                <line x1="378" y1="25" x2="378" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="372,52 384,52 378,64" fill="currentColor"/>
+              </g>
+              <g font-size="12" text-anchor="middle" fill="var(--ink-soft)">
+                <text x="30" y="108">1</text><text x="88" y="108" opacity="0.4">+</text><text x="146" y="108">2</text><text x="204" y="108" opacity="0.4">+</text>
+                <text x="262" y="108">3</text><text x="320" y="108" opacity="0.4">+</text><text x="378" y="108">4</text><text x="436" y="108" opacity="0.4">+</text>
+              </g>
+            </svg>
+            <figcaption class="mono">下－下－下－下（四分音符）</figcaption>
+          </div>
+          <div class="figure">
+            <svg viewBox="0 0 480 120" role="img" aria-label="上下交替節奏型：每個八分音符輪流向下與向上刷弦">
+              <line x1="20" y1="60" x2="460" y2="60" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+              <g>
+                <line x1="30" y1="25" x2="30" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="24,52 36,52 30,64" fill="currentColor"/>
+                <line x1="88" y1="95" x2="88" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="82,68 94,68 88,56" fill="var(--accent)"/>
+                <line x1="146" y1="25" x2="146" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="140,52 152,52 146,64" fill="currentColor"/>
+                <line x1="204" y1="95" x2="204" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="198,68 210,68 204,56" fill="var(--accent)"/>
+                <line x1="262" y1="25" x2="262" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="256,52 268,52 262,64" fill="currentColor"/>
+                <line x1="320" y1="95" x2="320" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="314,68 326,68 320,56" fill="var(--accent)"/>
+                <line x1="378" y1="25" x2="378" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="372,52 384,52 378,64" fill="currentColor"/>
+                <line x1="436" y1="95" x2="436" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="430,68 442,68 436,56" fill="var(--accent)"/>
+              </g>
+              <g font-size="12" text-anchor="middle" fill="var(--ink-soft)">
+                <text x="30" y="108">1</text><text x="88" y="108">+</text><text x="146" y="108">2</text><text x="204" y="108">+</text>
+                <text x="262" y="108">3</text><text x="320" y="108">+</text><text x="378" y="108">4</text><text x="436" y="108">+</text>
+              </g>
+            </svg>
+            <figcaption class="mono">下上－下上－下上－下上（八分音符）</figcaption>
+          </div>
+        </div>
+        <div class="tip"><b>節拍器：</b>從 60 BPM 開始，手腕小幅度擺動即可，速度每週提升 5–10 BPM。</div>
+      </div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="stage">
+      <div class="marker"><div class="num">3</div></div>
+      <div>
+        <div class="stage-head"><h3>閱讀六線譜與單音旋律</h3><span class="weeks">第 3–4 週</span></div>
+        <p class="stage-goal">學會看懂吉他專用的六線譜（TAB），並彈出第一段能聽出旋律的小曲。</p>
+        <div class="figure diagram-solo w-wide scroll-x">
+          <svg viewBox="0 0 640 220" role="img" aria-label="六線譜結構圖：六條橫線由上到下對應第1弦到第6弦，線上數字代表按第幾格，0代表空弦" style="min-width:560px">
+            <g stroke="currentColor" stroke-width="1.3" opacity="0.6">
+              <line x1="100" y1="30" x2="600" y2="30"/><line x1="100" y1="60" x2="600" y2="60"/>
+              <line x1="100" y1="90" x2="600" y2="90"/><line x1="100" y1="120" x2="600" y2="120"/>
+              <line x1="100" y1="150" x2="600" y2="150"/><line x1="100" y1="180" x2="600" y2="180"/>
+            </g>
+            <g font-size="12" text-anchor="end" fill="var(--ink-soft)">
+              <text x="90" y="34">1弦 E</text><text x="90" y="64">2弦 B</text><text x="90" y="94">3弦 G</text>
+              <text x="90" y="124">4弦 D</text><text x="90" y="154">5弦 A</text><text x="90" y="184">6弦 E</text>
+            </g>
+            <g>
+              <rect x="152" y="22" width="16" height="16" fill="var(--paper)"/><text x="160" y="34" text-anchor="middle" font-size="13" fill="var(--accent)">0</text>
+              <rect x="212" y="22" width="16" height="16" fill="var(--paper)"/><text x="220" y="34" text-anchor="middle" font-size="13" fill="currentColor">2</text>
+              <rect x="272" y="22" width="16" height="16" fill="var(--paper)"/><text x="280" y="34" text-anchor="middle" font-size="13" fill="currentColor">3</text>
+              <rect x="332" y="82" width="16" height="16" fill="var(--paper)"/><text x="340" y="94" text-anchor="middle" font-size="13" fill="currentColor">0</text>
+            </g>
+            <g stroke="currentColor" font-size="12.5" fill="var(--ink)">
+              <line x1="160" y1="20" x2="160" y2="0"/><circle cx="160" cy="20" r="2.5" fill="currentColor"/>
+              <text x="160" y="14" text-anchor="middle">0 = 空弦</text>
+              <line x1="280" y1="20" x2="280" y2="0" stroke-dasharray="0"/><circle cx="280" cy="20" r="2.5" fill="currentColor"/>
+              <text x="330" y="10" text-anchor="middle">數字 = 第幾格</text>
+              <line x1="330" y1="14" x2="280" y2="20"/>
+            </g>
+            <path d="M 40 25 L 40 185" stroke="currentColor" stroke-width="1.5" fill="none" marker-end="url(#tabArrow)"/>
+            <defs><marker id="tabArrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><polygon points="0,0 8,4 0,8" fill="currentColor"/></marker></defs>
+            <text x="16" y="105" font-size="12" fill="var(--ink-soft)" transform="rotate(-90 16 105)" text-anchor="middle">細 → 粗</text>
+          </svg>
+          <figcaption>六條線由上到下對應第 1 弦（細）到第 6 弦（粗），線上數字代表要按的格數，<span class="mono">0</span> 代表彈奏空弦。</figcaption>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 4 -->
+    <div class="stage">
+      <div class="marker"><div class="num">4</div></div>
+      <div>
+        <div class="stage-head"><h3>開放和弦與換和弦</h3><span class="weeks">第 4–7 週</span></div>
+        <p class="stage-goal">新手最容易卡關的階段，重點不是按對和弦，而是「換和弦的流暢度」。</p>
+        <div class="chords-grid" id="chords"></div>
+        <div class="figure">
+          <div class="switch-row">
+            <div class="chord-card"><div class="name">C</div><div id="chordC"></div></div>
+            <div class="switch-arrow">
+              <svg viewBox="0 0 44 24"><line x1="4" y1="12" x2="34" y2="12" stroke="currentColor" stroke-width="2"/><polygon points="30,6 40,12 30,18" fill="currentColor"/></svg>
+            </div>
+            <div class="chord-card"><div class="name">Am</div><div id="chordAm"></div></div>
+          </div>
+          <figcaption>食指（1）一直按著 B 弦第 1 格不動（圈起來的手指），只需移動 2、3 指，就能在 C 與 Am 之間快速切換。</figcaption>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 5 -->
+    <div class="stage">
+      <div class="marker"><div class="num">5</div></div>
+      <div>
+        <div class="stage-head"><h3>刷弦節奏型與分解和弦</h3><span class="weeks">第 7–9 週</span></div>
+        <p class="stage-goal">讓和弦「活起來」——加入節奏型與分解和弦，聽起來才像一首歌。</p>
+        <div class="legend-row">
+          <span class="sw"><i style="background:currentColor"></i>向下刷 Down</span>
+          <span class="sw"><i style="background:var(--accent)"></i>向上刷 Up</span>
+        </div>
+        <div class="figure diagram-solo w-mid">
+          <svg viewBox="0 0 480 120" role="img" aria-label="民謠搖滾經典節奏型：下、下上、空上、下上">
+            <line x1="20" y1="60" x2="460" y2="60" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+            <line x1="30" y1="25" x2="30" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="24,52 36,52 30,64" fill="currentColor"/>
+            <line x1="146" y1="25" x2="146" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="140,52 152,52 146,64" fill="currentColor"/>
+            <line x1="204" y1="95" x2="204" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="198,68 210,68 204,56" fill="var(--accent)"/>
+            <line x1="320" y1="95" x2="320" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="314,68 326,68 320,56" fill="var(--accent)"/>
+            <line x1="378" y1="25" x2="378" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="372,52 384,52 378,64" fill="currentColor"/>
+            <line x1="436" y1="95" x2="436" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="430,68 442,68 436,56" fill="var(--accent)"/>
+            <g font-size="12" text-anchor="middle" fill="var(--ink-soft)">
+              <text x="30" y="108">1</text><text x="88" y="108" opacity="0.4">+</text><text x="146" y="108">2</text><text x="204" y="108">+</text>
+              <text x="262" y="108" opacity="0.4">3</text><text x="320" y="108">+</text><text x="378" y="108">4</text><text x="436" y="108">+</text>
+            </g>
+          </svg>
+          <figcaption class="mono">下－下上－空上－下上（民謠搖滾經典節奏型）</figcaption>
+        </div>
+        <div class="figure diagram-solo w-mid" style="margin-top:28px">
+          <svg viewBox="0 0 480 140" role="img" aria-label="分解和弦撥弦順序：第5弦、第3弦、第2弦、第1弦、第2弦、第3弦依序撥動">
+            <g stroke="currentColor" stroke-width="1.5"><line x1="62" y1="70" x2="94" y2="70"/><polygon points="88,64 88,76 98,70" fill="currentColor"/>
+              <line x1="138" y1="70" x2="170" y2="70"/><polygon points="164,64 164,76 174,70" fill="currentColor"/>
+              <line x1="214" y1="70" x2="246" y2="70"/><polygon points="240,64 240,76 250,70" fill="currentColor"/>
+              <line x1="290" y1="70" x2="322" y2="70"/><polygon points="316,64 316,76 326,70" fill="currentColor"/>
+              <line x1="366" y1="70" x2="398" y2="70"/><polygon points="392,64 392,76 402,70" fill="currentColor"/>
+            </g>
+            <g font-size="15" text-anchor="middle" fill="var(--stage-ink)">
+              <circle cx="40" cy="70" r="22" fill="var(--stage-bg)"/><text x="40" y="75">5</text>
+              <circle cx="116" cy="70" r="22" fill="var(--stage-bg)"/><text x="116" y="75">3</text>
+              <circle cx="192" cy="70" r="22" fill="var(--stage-bg)"/><text x="192" y="75">2</text>
+              <circle cx="268" cy="70" r="22" fill="var(--stage-bg)"/><text x="268" y="75">1</text>
+              <circle cx="344" cy="70" r="22" fill="var(--stage-bg)"/><text x="344" y="75">2</text>
+              <circle cx="420" cy="70" r="22" fill="var(--stage-bg)"/><text x="420" y="75">3</text>
+            </g>
+          </svg>
+          <figcaption>拇指先撥低音弦（第 5 弦），接著依序撥第 3、2、1 弦，再回撥第 2、3 弦，形成分解和弦的滾動音效。</figcaption>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage 6 -->
+    <div class="stage">
+      <div class="marker"><div class="num">6</div></div>
+      <div>
+        <div class="stage-head"><h3>自彈自唱整合</h3><span class="weeks">第 9–12 週</span></div>
+        <p class="stage-goal">解決「一開口彈就亂」的問題，把彈奏和演唱拆開練，再合併起來。</p>
+        <div class="figure diagram-solo w-wide scroll-x">
+          <svg viewBox="0 0 640 150" role="img" aria-label="歌詞與換和弦位置對照：在特定的字上方標出要切換的和弦" style="min-width:560px">
+            <line x1="60" y1="90" x2="580" y2="90" stroke="currentColor" stroke-width="1.5"/>
+            <g font-size="13" text-anchor="middle" fill="var(--ink-soft)">
+              <text x="80" y="112">字1</text><text x="160" y="112">字2</text><text x="240" y="112">字3</text><text x="320" y="112">字4</text>
+              <text x="400" y="112">字5</text><text x="480" y="112">字6</text><text x="560" y="112">字7</text>
+            </g>
+            <g stroke="var(--accent)" stroke-width="1.5">
+              <line x1="80" y1="90" x2="80" y2="60"/><line x1="240" y1="90" x2="240" y2="60"/>
+              <line x1="400" y1="90" x2="400" y2="60"/><line x1="560" y1="90" x2="560" y2="60"/>
+            </g>
+            <g font-size="15" font-weight="600" text-anchor="middle" fill="var(--accent-ink)" font-family="IBM Plex Mono, monospace">
+              <rect x="62" y="34" width="36" height="22" rx="5" fill="var(--accent-soft)"/><text x="80" y="50">C</text>
+              <rect x="222" y="34" width="36" height="22" rx="5" fill="var(--accent-soft)"/><text x="240" y="50">G</text>
+              <rect x="378" y="34" width="44" height="22" rx="5" fill="var(--accent-soft)"/><text x="400" y="50">Am</text>
+              <rect x="542" y="34" width="36" height="22" rx="5" fill="var(--accent-soft)"/><text x="560" y="50">F</text>
+            </g>
+          </svg>
+          <figcaption>把歌詞拆成一個個字，標出每次要換和弦的那個字（範例用「字1、字2…」代替實際歌詞），先練「刷一下就換」，熟悉後再接上完整節奏型。</figcaption>
+        </div>
+        <div class="tip"><b>哼唱法：</b>先不唱歌詞，用「嗯」或「啦」對拍子，降低大腦負荷，再逐步加回歌詞。</div>
+      </div>
+    </div>
+
+    <!-- Stage 7 -->
+    <div class="stage">
+      <div class="marker"><div class="num">7</div></div>
+      <div>
+        <div class="stage-head"><h3>延伸與個人風格</h3><span class="weeks">第 12 週以後</span></div>
+        <p class="stage-goal">基礎打穩後，往大橫按和弦、簡易指彈或更多曲風延伸。</p>
+        <div class="figure diagram-solo w-narrow">
+          <div class="chord-card" style="width:140px;margin:0 auto">
+            <div class="name">F（大橫按）</div>
+            <svg viewBox="0 0 104 122" role="img" aria-label="F大橫按和弦圖：食指橫按第1格涵蓋六條弦，另外三指分別按第2、3格">
+              <text x="2" y="20" font-size="10" text-anchor="start" fill="var(--ink-soft)">1fr</text>
+              <g stroke="currentColor" stroke-width="1.2" opacity="0.6">
+                <line x1="12" y1="24" x2="92" y2="24"/><line x1="12" y1="46" x2="92" y2="46"/>
+                <line x1="12" y1="68" x2="92" y2="68"/><line x1="12" y1="90" x2="92" y2="90"/><line x1="12" y1="112" x2="92" y2="112"/>
+              </g>
+              <g stroke="currentColor" stroke-width="1.2">
+                <line x1="12" y1="24" x2="12" y2="112"/><line x1="28" y1="24" x2="28" y2="112"/><line x1="44" y1="24" x2="44" y2="112"/>
+                <line x1="60" y1="24" x2="60" y2="112"/><line x1="76" y1="24" x2="76" y2="112"/><line x1="92" y1="24" x2="92" y2="112"/>
+              </g>
+              <rect x="4" y="26" width="96" height="18" rx="9" fill="var(--accent)"/>
+              <text x="52" y="39" font-size="10" text-anchor="middle" fill="var(--paper)">1</text>
+              <circle cx="28" cy="79" r="8" fill="var(--accent)"/><text x="28" y="82.5" font-size="10" text-anchor="middle" fill="var(--paper)">3</text>
+              <circle cx="44" cy="79" r="8" fill="var(--accent)"/><text x="44" y="82.5" font-size="10" text-anchor="middle" fill="var(--paper)">4</text>
+              <circle cx="60" cy="57" r="8" fill="var(--accent)"/><text x="60" y="60.5" font-size="10" text-anchor="middle" fill="var(--paper)">2</text>
+            </svg>
+          </div>
+          <figcaption>食指（1）橫按第 1 格涵蓋全部六條弦，其餘三指各自按住第 2、3 格，比開放和弦多用一根手指同時控制多條弦。</figcaption>
+        </div>
+        <div class="tip"><b>提醒：</b>大橫按初期手指會沒力屬正常，可先用簡化指法（如 Fmaj7）過渡。</div>
+      </div>
+    </div>
+
+  </div>
+
+  <section>
+    <div class="section-head"><h2>建議練習曲目</h2><span class="sub">依難度分三級，依序挑戰</span></div>
+    <div class="songs">
+      <div class="song-tier">
+        <h4>Lv.1 · 單音熟悉譜面</h4>
+        <ul><li>小星星</li><li>生日快樂歌</li><li>兩隻老虎</li></ul>
+      </div>
+      <div class="song-tier">
+        <h4>Lv.2 · 三到四個和弦</h4>
+        <ul><li>小手拉大手</li><li>童年</li><li>You Are My Sunshine</li></ul>
+      </div>
+      <div class="song-tier">
+        <h4>Lv.3 · 自彈自唱挑戰曲</h4>
+        <ul><li>Stand By Me</li><li>I'm Yours</li><li>Counting Stars</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>實戰教材：晴天（周杰倫）</h2><span class="sub">Lv.3 挑戰曲的完整和弦拆解</span></div>
+    <div class="info-box">
+      <div class="item"><span class="l">建議調性</span><span class="v mono">G 大調（不夾 Capo）</span></div>
+      <div class="item"><span class="l">拍號</span><span class="v mono">4/4</span></div>
+      <div class="item"><span class="l">難度</span><span class="v">初階偏中，無大橫按</span></div>
+      <div class="item"><span class="l">需要和弦</span><span class="v mono">6 個</span></div>
+    </div>
+    <div class="chords-grid" id="songChords"></div>
+    <div class="prog-block">
+      <div class="seg">前奏 / 主歌</div>
+      <div class="prog-row"><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">G</span><span class="chip-arrow">→</span><span class="chip">D</span><span class="chip-arrow">↺ 重複</span></div>
+    </div>
+    <div class="prog-block">
+      <div class="seg">副歌</div>
+      <div class="prog-row"><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">G</span><span class="chip-arrow">→</span><span class="chip">D</span></div>
+      <div class="prog-row"><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">Am7</span><span class="chip-arrow">→</span><span class="chip">D</span></div>
+      <div class="prog-row"><span class="chip">G</span><span class="chip-arrow">→</span><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">D</span><span class="chip-arrow">→</span><span class="chip">G</span></div>
+      <div class="prog-row"><span class="chip">B7</span><span class="chip-arrow">→</span><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">Am7</span><span class="chip-arrow">→</span><span class="chip">D</span><span class="chip-arrow">→</span><span class="chip">G</span></div>
+    </div>
+    <div class="prog-block">
+      <div class="seg">Rap 段</div>
+      <div class="prog-row"><span class="chip">G</span><span class="chip-arrow">→</span><span class="chip">Em</span><span class="chip-arrow">→</span><span class="chip">C</span><span class="chip-arrow">→</span><span class="chip">D</span><span class="chip-arrow">↺ 重複</span></div>
+    </div>
+
+    <div class="figure diagram-solo w-mid" style="margin-top:28px">
+      <svg viewBox="0 0 480 140" role="img" aria-label="前奏與主歌建議伴奏指法：分解和弦撥弦順序第5弦、第3弦、第2弦、第1弦、第2弦、第3弦，套用在Em到C到G到D的和弦進行上">
+        <g stroke="currentColor" stroke-width="1.5"><line x1="62" y1="70" x2="94" y2="70"/><polygon points="88,64 88,76 98,70" fill="currentColor"/>
+          <line x1="138" y1="70" x2="170" y2="70"/><polygon points="164,64 164,76 174,70" fill="currentColor"/>
+          <line x1="214" y1="70" x2="246" y2="70"/><polygon points="240,64 240,76 250,70" fill="currentColor"/>
+          <line x1="290" y1="70" x2="322" y2="70"/><polygon points="316,64 316,76 326,70" fill="currentColor"/>
+          <line x1="366" y1="70" x2="398" y2="70"/><polygon points="392,64 392,76 402,70" fill="currentColor"/>
+        </g>
+        <g font-size="15" text-anchor="middle" fill="var(--stage-ink)">
+          <circle cx="40" cy="70" r="22" fill="var(--stage-bg)"/><text x="40" y="75">5</text>
+          <circle cx="116" cy="70" r="22" fill="var(--stage-bg)"/><text x="116" y="75">3</text>
+          <circle cx="192" cy="70" r="22" fill="var(--stage-bg)"/><text x="192" y="75">2</text>
+          <circle cx="268" cy="70" r="22" fill="var(--stage-bg)"/><text x="268" y="75">1</text>
+          <circle cx="344" cy="70" r="22" fill="var(--stage-bg)"/><text x="344" y="75">2</text>
+          <circle cx="420" cy="70" r="22" fill="var(--stage-bg)"/><text x="420" y="75">3</text>
+        </g>
+      </svg>
+      <figcaption>前奏／主歌建議指法：套用階段 5 教過的分解和弦手法（拇指撥第 5 弦、依序撥 3-2-1 弦、再回撥 2-3 弦），左手依序按住 Em → C → G → D 換和弦即可。</figcaption>
+    </div>
+
+    <div class="legend-row">
+      <span class="sw"><i style="background:currentColor"></i>向下刷 Down</span>
+      <span class="sw"><i style="background:var(--accent)"></i>向上刷 Up</span>
+    </div>
+    <div class="figure diagram-solo w-mid">
+      <svg viewBox="0 0 480 120" role="img" aria-label="副歌建議節奏型：下、下上、空上、下上，套用在副歌的和弦進行上">
+        <line x1="20" y1="60" x2="460" y2="60" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+        <line x1="30" y1="25" x2="30" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="24,52 36,52 30,64" fill="currentColor"/>
+        <line x1="146" y1="25" x2="146" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="140,52 152,52 146,64" fill="currentColor"/>
+        <line x1="204" y1="95" x2="204" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="198,68 210,68 204,56" fill="var(--accent)"/>
+        <line x1="320" y1="95" x2="320" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="314,68 326,68 320,56" fill="var(--accent)"/>
+        <line x1="378" y1="25" x2="378" y2="58" stroke="currentColor" stroke-width="3"/><polygon points="372,52 384,52 378,64" fill="currentColor"/>
+        <line x1="436" y1="95" x2="436" y2="62" stroke="var(--accent)" stroke-width="3"/><polygon points="430,68 442,68 436,56" fill="var(--accent)"/>
+        <g font-size="12" text-anchor="middle" fill="var(--ink-soft)">
+          <text x="30" y="108">1</text><text x="88" y="108" opacity="0.4">+</text><text x="146" y="108">2</text><text x="204" y="108">+</text>
+          <text x="262" y="108" opacity="0.4">3</text><text x="320" y="108">+</text><text x="378" y="108">4</text><text x="436" y="108">+</text>
+        </g>
+      </svg>
+      <figcaption>副歌建議節奏型：套用階段 5 教過的民謠搖滾刷弦型（下－下上－空上－下上），跟著副歌每小節的和弦切換即可。</figcaption>
+    </div>
+    <p class="disclaimer">和弦進行整理自公開和弦譜網站（吉他世界、chord4.com），僅列出和弦名稱與段落結構，不含歌詞。上方兩張伴奏指法圖是套用本教材通用技法示範，並非還原原曲錄音的逐音編曲；網路上流傳的版本也會依演唱者音域不同而選用不同 Capo／調性，正式演出前建議對照原曲錄音再次確認。</p>
+  </section>
+
+  <section>
+    <div class="section-head"><h2>常見問題</h2><span class="sub">教學時最常被問到的狀況</span></div>
+    <div class="faq">
+      <div class="faq-item"><div class="q"><span class="tag">正常</span>手指按弦很痛，需要停下來嗎？</div><p>前 1–2 週指尖疼痛是正常現象，繭形成後會改善。但若是手腕或虎口劇烈疼痛，代表姿勢錯誤，需要立即停止並檢查坐姿與手型。</p></div>
+      <div class="faq-item"><div class="q"><span class="tag">正常</span>按了和弦卻發出悶音或雜音？</div><p>通常是手指沒有立起來壓到旁邊的弦，或按的位置太靠近琴格中間。提醒學生手指盡量垂直、靠近琴衍後方按弦（見階段 1 對照圖）。</p></div>
+      <div class="faq-item"><div class="q"><span class="tag">常見</span>換和弦速度一直很慢怎麼辦？</div><p>先做「無聲換和弦」練習：按好和弦不撥弦，直接切換到下一個，抓到手指最短路徑（見階段 4 共同指技巧）後再加入撥弦與節拍器。</p></div>
+      <div class="faq-item"><div class="q"><span class="tag">常見</span>一邊彈一邊唱就亂掉？</div><p>先把彈奏練到不用思考的程度（能邊彈邊聊天），再單獨練熟歌詞旋律，最後才合併。中間可用哼唱代替唱詞過渡。</p></div>
+    </div>
+  </section>
+
+  <footer>吉他入門課程地圖 · 適用對象：零基礎新手 · 建議每次教學搭配 1–2 個階段內容進行</footer>
+
+</div>
+
+<script>
+const chords = [
+  { name:'C', frets:[-1,3,2,0,1,0], fingers:[null,3,2,null,1,null] },
+  { name:'G', frets:[3,2,0,0,0,3], fingers:[2,1,null,null,null,3] },
+  { name:'Am', frets:[-1,0,2,2,1,0], fingers:[null,null,2,3,1,null] },
+  { name:'Em', frets:[0,2,2,0,0,0], fingers:[null,2,3,null,null,null] },
+  { name:'D', frets:[-1,-1,0,2,3,2], fingers:[null,null,null,1,3,2] },
+  { name:'A', frets:[-1,0,2,2,2,0], fingers:[null,null,1,2,3,null] },
+];
+
+function chordSVG(chord, anchorIndex){
+  const stringX = i => 12 + i*16;
+  const fretY = f => 24 + f*22;
+  const numFrets = 4;
+  let svg = `<svg viewBox="0 0 104 122" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${chord.name} 和弦指法圖">`;
+  svg += `<rect x="12" y="22" width="80" height="4" fill="currentColor"/>`;
+  for(let f=1; f<=numFrets; f++){
+    svg += `<line x1="12" y1="${fretY(f)}" x2="92" y2="${fretY(f)}" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>`;
+  }
+  for(let i=0;i<6;i++){
+    svg += `<line x1="${stringX(i)}" y1="22" x2="${stringX(i)}" y2="${fretY(numFrets)}" stroke="currentColor" stroke-width="1.2" opacity="0.6"/>`;
+  }
+  chord.frets.forEach((fr,i)=>{
+    const x = stringX(i);
+    if(fr === -1){
+      svg += `<text x="${x}" y="15" font-size="11" fill="var(--ink-soft)" text-anchor="middle">x</text>`;
+    } else if(fr === 0){
+      svg += `<circle cx="${x}" cy="14" r="4" fill="none" stroke="var(--ink-soft)" stroke-width="1.5"/>`;
+    }
+  });
+  chord.frets.forEach((fr,i)=>{
+    if(fr > 0){
+      const x = stringX(i);
+      const y = fretY(fr) - 11;
+      if(i === anchorIndex){
+        svg += `<circle cx="${x}" cy="${y}" r="11.5" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+      }
+      svg += `<circle cx="${x}" cy="${y}" r="7.5" fill="var(--accent)"/>`;
+      svg += `<text x="${x}" y="${y+3.5}" font-size="9.5" fill="var(--paper)" text-anchor="middle">${chord.fingers[i]}</text>`;
+    }
+  });
+  svg += `</svg>`;
+  return svg;
+}
+
+document.getElementById('chords').innerHTML = chords.map(c =>
+  `<div class="chord-card"><div class="name">${c.name}</div>${chordSVG(c)}</div>`
+).join('');
+
+document.getElementById('chordC').innerHTML = chordSVG(chords[0], 4);
+document.getElementById('chordAm').innerHTML = chordSVG(chords[2], 4);
+
+const extraChords = {
+  Am7:{ name:'Am7', frets:[-1,0,2,0,1,0], fingers:[null,null,2,null,1,null] },
+  B7:{ name:'B7', frets:[-1,2,1,2,0,2], fingers:[null,2,1,3,null,4] },
+};
+const chordLookup = Object.fromEntries(chords.map(c=>[c.name,c]));
+Object.assign(chordLookup, extraChords);
+document.getElementById('songChords').innerHTML = ['Em','C','G','D','Am7','B7'].map(n =>
+  `<div class="chord-card"><div class="name">${n}</div>${chordSVG(chordLookup[n])}</div>`
+).join('');
+</script>
