@@ -1,0 +1,345 @@
+<title>吉他練習曲目工具</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --paper:#EDEFE7; --paper-raised:#F6F7F1; --ink:#1E2621; --ink-soft:#4B564D; --line:#C9CFC1;
+    --accent:#B9682F; --accent-soft:#E3C8A9; --accent-ink:#5A3212;
+    --stage-bg:#232E27; --stage-ink:#EDEFE7; --chip-bg:#DDE3D3;
+    --tag1:#3E6B4A; --tag1-bg:#DCEADF; --tag2:#8A6A1F; --tag2-bg:#EFE3C4; --tag3:#7A3E63; --tag3-bg:#EBD9E4;
+    --shadow: 0 1px 0 rgba(30,38,33,0.06);
+  }
+  :root:not([data-theme="light"]){
+    @media (prefers-color-scheme: dark){
+      --paper:#161C18; --paper-raised:#1F2620; --ink:#E8EAE2; --ink-soft:#AEB8AA; --line:#333F35;
+      --accent:#E08A45; --accent-soft:#3B2A1B; --accent-ink:#F3D2AC;
+      --stage-bg:#2A3A2F; --stage-ink:#EDEFE7; --chip-bg:#2A342C;
+      --tag1:#8FC79D; --tag1-bg:#233329; --tag2:#D8B368; --tag2-bg:#332A17; --tag3:#CC9BB8; --tag3-bg:#332430;
+      --shadow: 0 1px 0 rgba(0,0,0,0.4);
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#161C18; --paper-raised:#1F2620; --ink:#E8EAE2; --ink-soft:#AEB8AA; --line:#333F35;
+    --accent:#E08A45; --accent-soft:#3B2A1B; --accent-ink:#F3D2AC;
+    --stage-bg:#2A3A2F; --stage-ink:#EDEFE7; --chip-bg:#2A342C;
+    --tag1:#8FC79D; --tag1-bg:#233329; --tag2:#D8B368; --tag2-bg:#332A17; --tag3:#CC9BB8; --tag3-bg:#332430;
+    --shadow: 0 1px 0 rgba(0,0,0,0.4);
+  }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:'Karla', ui-sans-serif, system-ui, sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap{ max-width:920px; margin:0 auto; padding:56px 28px 96px; }
+  h1,h2,h3{ font-family:'Fraunces', Georgia, serif; font-weight:600; text-wrap:balance; color:var(--ink); margin:0; }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  svg text{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+
+  header.hero{ display:flex; flex-direction:column; gap:14px; padding-bottom:32px; border-bottom:1px solid var(--line); margin-bottom:32px; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  h1{ font-size:clamp(28px,5vw,40px); line-height:1.15; max-width:18ch; }
+  .lede{ font-size:16px; color:var(--ink-soft); max-width:64ch; }
+
+  .filter-bar{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+  .filter-btn{ font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:600; padding:7px 16px; border-radius:20px; border:1px solid var(--line); background:var(--paper-raised); color:var(--ink-soft); cursor:pointer; transition:background .15s,color .15s,border-color .15s; }
+  .filter-btn:hover{ border-color:var(--accent); }
+  .filter-btn.active{ background:var(--stage-bg); color:var(--stage-ink); border-color:var(--stage-bg); }
+
+  .song-list{ display:flex; flex-direction:column; gap:14px; }
+  .song-card{ background:var(--paper-raised); border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .song-card summary{ list-style:none; cursor:pointer; padding:16px 20px; display:flex; align-items:center; gap:14px; }
+  .song-card summary::-webkit-details-marker{ display:none; }
+  .song-card .chev{ margin-left:auto; color:var(--ink-soft); font-size:13px; transition:transform .15s; flex-shrink:0; }
+  .song-card[open] .chev{ transform:rotate(90deg); }
+  .tier-badge{ font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; padding:3px 9px; border-radius:5px; flex-shrink:0; }
+  .tier-badge.t1{ color:var(--tag1); background:var(--tag1-bg); }
+  .tier-badge.t2{ color:var(--tag2); background:var(--tag2-bg); }
+  .tier-badge.t3{ color:var(--tag3); background:var(--tag3-bg); }
+  .song-title{ font-weight:700; font-size:15.5px; }
+  .song-artist{ font-size:13px; color:var(--ink-soft); }
+  .song-body{ padding:4px 20px 22px; border-top:1px solid var(--line); }
+
+  .chord-track{ display:flex; gap:6px; flex-wrap:wrap; margin:14px 0; }
+  .chord-chip{ font-family:'IBM Plex Mono',monospace; font-size:13.5px; font-weight:600; background:var(--chip-bg); color:var(--ink); border-radius:6px; padding:4px 11px; transition:background .12s,color .12s; }
+  .chord-chip.now{ background:var(--accent); color:var(--paper); }
+
+  .tab-scroll{ overflow-x:auto; margin:16px 0; background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 8px; }
+  .tab-scroll svg{ display:block; height:auto; }
+
+  .player{ background:var(--paper); border:1px solid var(--line); border-radius:10px; padding:14px 16px; margin-top:8px; }
+  .player-row{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+  .play-btn{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:13.5px; background:var(--stage-bg); color:var(--stage-ink); border:none; border-radius:8px; padding:9px 18px; cursor:pointer; }
+  .play-btn:hover{ opacity:.9; }
+  .bpm-row{ display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+  .bpm-row input[type=range]{ accent-color:var(--accent); }
+  .chord-display{ font-family:'IBM Plex Mono',monospace; font-size:26px; font-weight:700; color:var(--accent-ink); background:var(--accent-soft); border-radius:8px; padding:4px 18px; min-width:64px; text-align:center; }
+
+  .link-note{ font-size:13.5px; color:var(--ink-soft); margin:12px 0; }
+  .link-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:6px; }
+  .link-btn{ display:inline-flex; align-items:center; gap:6px; font-size:13.5px; font-weight:600; color:var(--ink); background:var(--chip-bg); border-radius:8px; padding:8px 14px; text-decoration:none; border:1px solid var(--line); }
+  .link-btn:hover{ border-color:var(--accent); color:var(--accent-ink); }
+  .link-btn .src{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); }
+
+  footer{ margin-top:56px; padding-top:20px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; }
+</style>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">吉他練習曲目 · 互動工具</div>
+    <h1>照著這個順序，一首一首練</h1>
+    <p class="lede">公版童謠直接附上簡化六線譜、和弦與可調速的節奏練習器；有版權的流行歌只列出前往正版譜源網站的連結，不在頁面上重製譜面。</p>
+  </header>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-tier="all">全部</button>
+    <button class="filter-btn" data-tier="1">Lv.1 單音熟悉譜面</button>
+    <button class="filter-btn" data-tier="2">Lv.2 三到四個和弦</button>
+    <button class="filter-btn" data-tier="3">Lv.3 自彈自唱挑戰曲</button>
+  </div>
+
+  <div class="song-list" id="songList"></div>
+
+  <footer>吉他練習曲目工具 · 公版曲目的六線譜為教材自製簡化版，非還原特定錄音版本 · 有版權曲目請至連結網站查看完整譜面</footer>
+</div>
+
+<script>
+const NOTE = { C:[5,3], D:[4,0], E:[4,2], F:[4,3], G:[3,0], A:[3,2], B:[2,0], C2:[2,1], D2:[2,3], E2:[1,0], F2:[1,1], G2:[1,3] };
+
+const songs = [
+  {
+    tier:1, title:'小星星', artist:'傳統童謠（公版旋律）', type:'full',
+    phrases:[
+      ['C','C','G','G','A','A','G'],
+      ['F','F','E','E','D','D','C'],
+      ['G','G','F','F','E','E','D'],
+      ['G','G','F','F','E','E','D'],
+      ['C','C','G','G','A','A','G'],
+      ['F','F','E','E','D','D','C'],
+    ],
+    chords:['C','C','G','G','C','C'],
+  },
+  {
+    tier:1, title:'生日快樂歌', artist:'傳統歌曲（公版旋律）', type:'full',
+    phrases:[
+      ['G','G','A','G','C2','B'],
+      ['G','G','A','G','D2','C2'],
+      ['G','G','G2','E2','C2','B','A'],
+      ['F2','F2','E2','C2','D2','C2'],
+    ],
+    chords:['C','G','C','G'],
+  },
+  {
+    tier:1, title:'兩隻老虎', artist:'傳統童謠（法國民謠改編・公版旋律）', type:'full',
+    phrases:[
+      ['C','D','E','C'],['C','D','E','C'],
+      ['E','F','G'],['E','F','G'],
+      ['G','A','G','F','E','C'],['G','A','G','F','E','C'],
+      ['C','G','C'],['C','G','C'],
+    ],
+    chords:['C','C','C','C','G','G','C','C'],
+  },
+  {
+    tier:2, title:'小手拉大手', artist:'梁靜茹', type:'link',
+    links:[
+      { label:'Ultimate Guitar', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/4270696' },
+      { label:'Chord4', src:'chord4.com', url:'https://chord4.com/tabs/10664' },
+    ],
+  },
+  {
+    tier:2, title:'童年', artist:'羅大佑', type:'link',
+    links:[
+      { label:'Ultimate Guitar', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/4829867' },
+      { label:'Chord4', src:'chord4.com', url:'https://chord4.com/tabs/12701' },
+    ],
+  },
+  {
+    tier:2, title:'You Are My Sunshine', artist:'Jimmie Davis（1939，美國仍受著作權保護）', type:'link',
+    links:[
+      { label:'Willie Nelson 版本', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/willie-nelson/you-are-my-sunshine-chords-77945' },
+      { label:'Johnny Cash 版本', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/johnny-cash/you-are-my-sunshine-chords-1788975' },
+    ],
+  },
+  {
+    tier:3, title:'Stand By Me', artist:'Ben E. King', type:'link',
+    links:[
+      { label:'初學者版本（無 Capo）', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/ben-e-king/stand-by-me-chords-684694' },
+    ],
+  },
+  {
+    tier:3, title:"I'm Yours", artist:'Jason Mraz', type:'link',
+    links:[
+      { label:'標準版本', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/jason-mraz/im-yours-chords-468625' },
+    ],
+  },
+  {
+    tier:3, title:'Counting Stars', artist:'OneRepublic', type:'link',
+    links:[
+      { label:'標準版本', src:'ultimate-guitar.com', url:'https://tabs.ultimate-guitar.com/tab/onerepublic/counting-stars-chords-1233464' },
+    ],
+  },
+];
+
+function tabSVG(phrases){
+  const noteGap = 26, phraseGap = 22, leftMargin = 66, topMargin = 14, lineGap = 20;
+  let x = leftMargin;
+  const notes = [];
+  phrases.forEach((phrase, pi) => {
+    if(pi > 0) x += phraseGap;
+    phrase.forEach(key => {
+      const [s,f] = NOTE[key];
+      notes.push({ x, s, f });
+      x += noteGap;
+    });
+  });
+  const width = x + 20;
+  const height = topMargin + lineGap*5 + 26;
+  const stringNames = ['1弦 e','2弦 B','3弦 G','4弦 D','5弦 A'];
+  let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="簡化六線譜">`;
+  for(let s=1; s<=5; s++){
+    const y = topMargin + (s-1)*lineGap;
+    svg += `<line x1="${leftMargin-6}" y1="${y}" x2="${width-10}" y2="${y}" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>`;
+    svg += `<text x="${leftMargin-14}" y="${y+4}" font-size="10.5" text-anchor="end" fill="var(--ink-soft)">${stringNames[s-1]}</text>`;
+  }
+  notes.forEach(n => {
+    const y = topMargin + (n.s-1)*lineGap;
+    svg += `<rect x="${n.x-8}" y="${y-7}" width="16" height="14" fill="var(--paper)"/>`;
+    svg += `<text x="${n.x}" y="${y+4}" font-size="12" text-anchor="middle" fill="currentColor">${n.f}</text>`;
+  });
+  svg += `</svg>`;
+  return { svg, notes, width };
+}
+
+function beep(ctx, time, freq, accent){
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.frequency.value = freq;
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(accent ? 0.18 : 0.1, time);
+  gain.gain.exponentialRampToValueAtTime(0.001, time + 0.08);
+  osc.connect(gain).connect(ctx.destination);
+  osc.start(time);
+  osc.stop(time + 0.08);
+}
+
+function buildPlayer(container, chords){
+  const wrap = document.createElement('div');
+  wrap.className = 'player';
+  wrap.innerHTML = `
+    <div class="player-row">
+      <button class="play-btn">▶ 開始練習</button>
+      <div class="bpm-row">BPM <input type="range" min="50" max="120" value="80" class="bpm-slider"><span class="bpm-val">80</span></div>
+      <div class="chord-display">${chords[0]}</div>
+    </div>
+    <div class="chord-track"></div>
+  `;
+  container.appendChild(wrap);
+  const track = wrap.querySelector('.chord-track');
+  chords.forEach(c => {
+    const chip = document.createElement('span');
+    chip.className = 'chord-chip';
+    chip.textContent = c;
+    track.appendChild(chip);
+  });
+  const chips = [...track.children];
+  const btn = wrap.querySelector('.play-btn');
+  const slider = wrap.querySelector('.bpm-slider');
+  const bpmVal = wrap.querySelector('.bpm-val');
+  const display = wrap.querySelector('.chord-display');
+  slider.addEventListener('input', () => { bpmVal.textContent = slider.value; });
+
+  let ctx = null, timer = null, beatCount = 0, chordIndex = 0, playing = false;
+
+  function tick(){
+    const bpm = parseInt(slider.value, 10);
+    const isAccent = beatCount % 4 === 0;
+    beep(ctx, ctx.currentTime, isAccent ? 880 : 660, isAccent);
+    if(isAccent){
+      chips.forEach(c => c.classList.remove('now'));
+      chips[chordIndex].classList.add('now');
+      display.textContent = chords[chordIndex];
+      chordIndex = (chordIndex + 1) % chords.length;
+    }
+    beatCount++;
+    timer = setTimeout(tick, 60000 / bpm);
+  }
+
+  btn.addEventListener('click', () => {
+    if(playing){
+      playing = false;
+      clearTimeout(timer);
+      btn.textContent = '▶ 開始練習';
+      chips.forEach(c => c.classList.remove('now'));
+    } else {
+      playing = true;
+      if(!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      beatCount = 0; chordIndex = 0;
+      btn.textContent = '■ 停止';
+      tick();
+    }
+  });
+}
+
+function tierLabel(t){ return t===1 ? 'Lv.1' : t===2 ? 'Lv.2' : 'Lv.3'; }
+
+function renderSongs(filter){
+  const list = document.getElementById('songList');
+  list.innerHTML = '';
+  songs.filter(s => filter==='all' || s.tier===Number(filter)).forEach(song => {
+    const card = document.createElement('details');
+    card.className = 'song-card';
+    const summary = document.createElement('summary');
+    summary.innerHTML = `
+      <span class="tier-badge t${song.tier}">${tierLabel(song.tier)}</span>
+      <span><span class="song-title">${song.title}</span><br><span class="song-artist">${song.artist}</span></span>
+      <span class="chev">▶</span>
+    `;
+    card.appendChild(summary);
+    const body = document.createElement('div');
+    body.className = 'song-body';
+
+    if(song.type === 'full'){
+      const chordRow = document.createElement('div');
+      chordRow.className = 'chord-track';
+      song.chords.forEach(c => {
+        const chip = document.createElement('span');
+        chip.className = 'chord-chip';
+        chip.textContent = c;
+        chordRow.appendChild(chip);
+      });
+      body.appendChild(chordRow);
+
+      const tabWrap = document.createElement('div');
+      tabWrap.className = 'tab-scroll';
+      tabWrap.innerHTML = tabSVG(song.phrases).svg;
+      body.appendChild(tabWrap);
+
+      buildPlayer(body, song.chords);
+    } else {
+      const note = document.createElement('p');
+      note.className = 'link-note';
+      note.textContent = '這首歌受著作權保護，這裡不重製譜面，請直接前往下列正版譜源網站查看完整六線譜／和弦：';
+      body.appendChild(note);
+      const linkRow = document.createElement('div');
+      linkRow.className = 'link-row';
+      song.links.forEach(l => {
+        const a = document.createElement('a');
+        a.className = 'link-btn';
+        a.href = l.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.innerHTML = `${l.label} <span class="src">↗ ${l.src}</span>`;
+        linkRow.appendChild(a);
+      });
+      body.appendChild(linkRow);
+    }
+    card.appendChild(body);
+    list.appendChild(card);
+  });
+}
+
+document.getElementById('filterBar').addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if(!btn) return;
+  [...document.querySelectorAll('.filter-btn')].forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSongs(btn.dataset.tier);
+});
+
+renderSongs('all');
+</script>
