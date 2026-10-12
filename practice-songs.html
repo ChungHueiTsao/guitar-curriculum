@@ -289,6 +289,7 @@ function renderSongs(filter){
   songs.filter(s => filter==='all' || s.tier===Number(filter)).forEach(song => {
     const card = document.createElement('details');
     card.className = 'song-card';
+    card.id = 's' + (songs.indexOf(song)+1);
     const summary = document.createElement('summary');
     summary.innerHTML = `
       <span class="tier-badge t${song.tier}">${tierLabel(song.tier)}</span>
@@ -348,4 +349,5 @@ document.getElementById('filterBar').addEventListener('click', e => {
 });
 
 renderSongs('all');
+if(location.hash){ const t=document.querySelector(location.hash); if(t){ t.open=true; t.scrollIntoView({block:'center'}); } }
 </script>
